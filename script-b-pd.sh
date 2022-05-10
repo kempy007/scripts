@@ -9,8 +9,8 @@
 
 cd /data/chains/polkadot/network/ && sudo rm -rf *
 cd /data/chains/polkadot/keystore/ && sudo rm -rf *
-sudo cp /tmp/pd/n/* /data/chains/polkadot/network/
-sudo cp /tmp/pd/k/* /data/chains/polkadot/keystore/ || echo "Empty"
+sudo cp ~/pd/n/* /data/chains/polkadot/network/
+sudo cp -r ~/pd/k/* /data/chains/polkadot/keystore/ || echo "Empty"
 
 sudo reboot
 #sudo docker restart $(sudo docker ps -aqf "name=polkadot")

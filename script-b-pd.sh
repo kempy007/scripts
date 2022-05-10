@@ -7,6 +7,7 @@
 #sudo echo "UUID=$UUID /data ext4 defaults 0 0" >> /etc/fstab
 #sudo mount -a
 
+sudo docker pause $(sudo docker ps -aqf "name=polkadot")
 cd /data/chains/polkadot/network/ && sudo rm -rf *
 cd /data/chains/polkadot/keystore/ && sudo rm -rf *
 sudo cp ~/pd/n/* /data/chains/polkadot/network/

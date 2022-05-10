@@ -7,8 +7,8 @@
 #sudo echo "UUID=$UUID /data ext4 defaults 0 0" >> /etc/fstab
 #sudo mount -a
 
-sudo rm -rf /data/chains/polkadot/network/*
-sudo rm -rf /data/chains/polkadot/keystore/*
+cd /data/chains/polkadot/network/ && sudo rm -rf *
+cd /data/chains/polkadot/keystore/ && sudo rm -rf *
 sudo cp /tmp/pd/n/* /data/chains/polkadot/network/
 sudo cp /tmp/pd/k/* /data/chains/polkadot/keystore/ || echo "Empty"
 

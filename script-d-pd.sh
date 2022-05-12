@@ -1,5 +1,6 @@
 #!/bin/bash
 
+## if we want to regen the uuid > https://www.simplified.guide/linux/disk-uuid-set
 sudo cp /etc/fstab ~/
 UUID=$(blkid /dev/nvme1n1 -s UUID | cut -d'=' -f2 | sed -e 's/^"//' -e 's/"$//')
 echo "UUID=$UUID"

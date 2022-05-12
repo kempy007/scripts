@@ -9,5 +9,7 @@ sudo cp -r ~/pd/k/* /data/chains/polkadot/keystore/ || echo "Empty"
 sudo systemctl start amazon-cloudwatch-agent
 sudo systemctl start grafana-agent
 sudo docker restart $(sudo docker ps -aqf "name=polkadot")
+sudo docker start $(sudo docker ps -a -q)
+sudo docker unpause $(sudo docker ps -a -q)
 
 #tail -f /data/nodestate/collector.log

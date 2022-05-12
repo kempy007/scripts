@@ -7,6 +7,6 @@ sudo cp -r /data/chains/polkadot/keystore/* ~/pd/k || echo "Empty"
 sudo systemctl stop amazon-cloudwatch-agent
 sudo systemctl stop grafana-agent
 sleep 3
-sudo apt-get -y install lsof
-sudo lsof | grep '/data'
+sudo docker stop $(sudo docker ps -a -q)
+sudo lsof | grep '/data' || sudo apt-get -y install lsof && sudo lsof | grep '/data' 
 sudo umount /data

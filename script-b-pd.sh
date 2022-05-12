@@ -10,6 +10,7 @@ sudo systemctl start amazon-cloudwatch-agent
 sudo systemctl start grafana-agent
 sudo systemctl start nodestatebeat
 sudo docker kill $(sudo docker ps -aqf "name=polkadot")
+sudo docker kill $(sudo docker ps -aqf "name=collector")
 sudo docker start $(sudo docker ps -a -q)
 sudo docker unpause $(sudo docker ps -a -q)
 

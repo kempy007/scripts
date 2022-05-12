@@ -6,4 +6,5 @@ sudo cp /data/chains/polkadot/network/* ~/pd/n
 sudo cp -r /data/chains/polkadot/keystore/* ~/pd/k || echo "Empty"
 sudo systemctl stop amazon-cloudwatch-agent
 sudo systemctl stop grafana-agent
+sleep 3
 sudo umount /data

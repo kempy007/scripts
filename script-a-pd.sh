@@ -12,7 +12,7 @@ sleep 3
 sudo lsof | grep ' /data' || sudo apt-get -y install lsof && sudo lsof | grep ' /data'
 touch ~/mnt.in.use
 echo "Mount in use..."
-while ! [ -f ~/mnt.in.use ];
+while [ -f ~/mnt.in.use ];
 do
     if [[ $(sudo lsof | grep ' /data') ]]; then 
       echo "."

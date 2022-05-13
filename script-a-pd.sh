@@ -9,5 +9,17 @@ sudo systemctl stop grafana-agent
 sudo systemctl stop nodestatebeat
 sudo docker stop $(sudo docker ps -a -q)
 sleep 3
-sudo lsof | grep ' /data' || sudo apt-get -y install lsof && sudo lsof | grep ' /data' 
+sudo lsof | grep ' /data' || sudo apt-get -y install lsof && sudo lsof | grep ' /data'
+touch ~/mnt.in.use
+echo "Mount in use..."
+while ! [ -f ~/mnt.in.use ];
+do
+    if [[ $(sudo lsof | grep ' /data') ]]; then 
+      echo "."
+    else
+      rm ~/mnt.in.use 
+    fi
+    sleep 1
+done
+
 sudo umount /data

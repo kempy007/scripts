@@ -19,6 +19,7 @@ function restore_services {
   sudo docker unpause $(sudo docker ps -a -q)
 }
 
+sudo blkid
 sudo cat /proc/diskstats | grep nvme
 sudo lsblk
 

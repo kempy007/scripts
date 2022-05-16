@@ -8,6 +8,8 @@ function update_mounts {
   sudo chmod 644 /etc/fstab
   sudo mount -a
   sudo mount | grep ' /data'
+  cd /data/chains/polkadot/network/ && sudo rm -rf *
+  cd /data/chains/polkadot/keystore/ && sudo rm -rf *
 }
 
 ## if we want to regen the uuid > https://www.simplified.guide/linux/disk-uuid-set

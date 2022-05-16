@@ -15,7 +15,7 @@ UUID=$(sudo blkid /dev/nvme1n1 -s UUID | cut -d'=' -f2 | sed -e 's/^"//' -e 's/"
 echo "UUID=$UUID"
 
 if [[ $(echo "$UUID") ]]; then 
-  echo "has value"
+  echo "Updating mounts"
   update_mounts
 else
   echo "@@@@@@@@@@@@@@@@@@@@@@@@"

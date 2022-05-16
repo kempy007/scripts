@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo docker pause $(sudo docker ps -aqf "name=polkadot")
+sudo docker kill $(sudo docker ps -aqf "name=polkadot")
 cd /data/chains/polkadot/network/ && sudo rm -rf *
 cd /data/chains/polkadot/keystore/ && sudo rm -rf *
 sudo cp ~/pd/n/* /data/chains/polkadot/network/

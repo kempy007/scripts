@@ -1,6 +1,6 @@
 #!/bin/bash
 
-restore_services {
+function restore_services {
   sudo docker kill $(sudo docker ps -aqf "name=polkadot")
   cd /data/chains/polkadot/network/ && sudo rm -rf *
   cd /data/chains/polkadot/keystore/ && sudo rm -rf *

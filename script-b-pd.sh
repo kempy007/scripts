@@ -1,16 +1,6 @@
 #!/bin/bash
-sudo cat /proc/diskstats | grep nvme
-sudo lsblk
 
-if [[ $(sudo mount | grep ' /data') ]]; then 
-  echo "Mount Ok"
-  restore_services
-else
-  echo "@@@@@@@@@@@@@@@"
-  echo "No mounts found"
-fi
-
-restore_services () {
+restore_services {
   sudo docker kill $(sudo docker ps -aqf "name=polkadot")
   cd /data/chains/polkadot/network/ && sudo rm -rf *
   cd /data/chains/polkadot/keystore/ && sudo rm -rf *
@@ -28,3 +18,14 @@ restore_services () {
   sudo docker start $(sudo docker ps -a -q)
   sudo docker unpause $(sudo docker ps -a -q)
 }
+
+sudo cat /proc/diskstats | grep nvme
+sudo lsblk
+
+if [[ $(sudo mount | grep ' /data') ]]; then 
+  echo "Mount Ok"
+  restore_services
+else
+  echo "@@@@@@@@@@@@@@@"
+  echo "No mounts found"
+fi

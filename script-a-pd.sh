@@ -21,5 +21,6 @@ do
     fi
     sleep 1
 done
+sudo lsof | grep ' /data'
 
 sudo umount /data

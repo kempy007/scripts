@@ -1,9 +1,13 @@
 #!/bin/bash
-sudo docker kill $(sudo docker ps -aqf "name=polkadot")
-sudo docker kill $(sudo docker ps -aqf "name=collector")
-sudo mkdir ~/pd && sudo mkdir ~/pd/n && sudo mkdir ~/pd/k
-sudo cp /data/chains/polkadot/network/* ~/pd/n
-sudo cp -r /data/chains/polkadot/keystore/* ~/pd/k || echo "Empty"
+
+if [ -n "$KEEPKEYS" ]; then
+    sudo docker kill $(sudo docker ps -aqf "name=polkadot")
+    sudo docker kill $(sudo docker ps -aqf "name=collector")
+    sudo mkdir ~/pd && sudo mkdir ~/pd/n && sudo mkdir ~/pd/k
+    sudo cp /data/chains/polkadot/network/* ~/pd/n
+    sudo cp -r /data/chains/polkadot/keystore/* ~/pd/k || echo "Empty"
+fi
+
 sudo systemctl stop amazon-cloudwatch-agent
 sudo systemctl stop grafana-agent
 sudo systemctl stop nodestatebeat

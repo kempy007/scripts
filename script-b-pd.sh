@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo cat /proc/diskstats | grep nvme
 
 if [[ $(sudo mount | grep ' /data') ]]; then 
   echo "Mount Ok"

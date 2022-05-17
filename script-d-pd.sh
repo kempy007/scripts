@@ -7,9 +7,21 @@ function update_mounts {
   sudo echo "UUID=$UUID /data ext4 defaults 0 0" >> /etc/fstab
   sudo chmod 644 /etc/fstab
   sudo mount -a
-  sudo mount | grep ' /data'
-  cd /data/chains/polkadot/network/ && sudo rm -rf *
-  cd /data/chains/polkadot/keystore/ && sudo rm -rf *
+  sudo lsblk
+  touch ~/no.mnt
+  while [ -f ~/no.mnt ];
+  do
+      if [[ $(sudo lsblk | grep ' /data') ]]; then 
+        echo "/data is mounted, cleaning keys"
+        cd /data/chains/polkadot/network/ && sudo rm -rf *
+        cd /data/chains/polkadot/keystore/ && sudo rm -rf *
+        rm ~/no.mnt 
+      else
+        echo "no /data mounted, retrying mount"
+        sudo mount /data
+      fi
+      sleep 1
+  done
 }
 
 ## if we want to regen the uuid > https://www.simplified.guide/linux/disk-uuid-set

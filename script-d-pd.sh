@@ -6,6 +6,7 @@ function update_mounts {
   sudo echo "LABEL=cloudimg-rootfs   /        ext4   defaults,discard        0 1" > /etc/fstab 
   sudo echo "UUID=$UUID /data ext4 defaults 0 0" >> /etc/fstab
   sudo chmod 644 /etc/fstab
+  echo "Attempting mounts"
   sudo mount -a
   sudo lsblk
   touch ~/no.mnt
@@ -17,10 +18,10 @@ function update_mounts {
         cd /data/chains/polkadot/keystore/ && sudo rm -rf *
         rm ~/no.mnt 
       else
-        echo "no /data mounted, retrying mount"
+        echo -n "."
         sudo mount /data
       fi
-      sleep 1
+      sleep 5
   done
 }
 

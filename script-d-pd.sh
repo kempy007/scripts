@@ -16,9 +16,12 @@ function update_mounts {
         echo "/data is mounted, cleaning keys"
         cd /data/chains/polkadot/network/ && sudo rm -rf *
         cd /data/chains/polkadot/keystore/ && sudo rm -rf *
+        # let nq complete its task :/ pls no format
+        sudo umount /data
         rm ~/no.mnt 
       else
         echo -n "."
+        [ ! -d "/data" ] && sudo mkdir /data
         sudo mount /data
       fi
       sleep 5
